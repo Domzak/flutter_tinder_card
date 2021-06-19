@@ -1,10 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:fluttery_dart2/layout.dart';
 
 import './matches.dart';
 import './photos.dart';
+import 'center_about.dart';
+import 'layout_overlays.dart';
 
 class CardStack extends StatefulWidget {
   final Function(Decision?)? onSwipeCallback;
