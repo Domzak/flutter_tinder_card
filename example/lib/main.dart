@@ -15,7 +15,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
           body: TinderSwapCard(
-        demoProfiles: demoProfiles,
+        profilesList: demoProfiles,
         myCallback: (decision) {},
       )),
     );

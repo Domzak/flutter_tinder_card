@@ -5,16 +5,16 @@ import './matches.dart';
 
 class TinderSwapCard extends StatefulWidget {
   TinderSwapCard({
-    Key key,
+    Key? key,
     this.title,
-    this.demoProfiles,
+    this.profilesList,
     this.myCallback,
   }) : super(key: key);
 
-  final String title;
-  final List demoProfiles;
+  final String? title;
+  final List? profilesList;
 
-  final Function(Decision) myCallback;
+  final Function(Decision)? myCallback;
 
   @override
   _TinderSwapCardState createState() => _TinderSwapCardState();
@@ -74,7 +74,7 @@ class _TinderSwapCardState extends State<TinderSwapCard> {
   @override
   Widget build(BuildContext context) {
     final MatchEngine matchEngine = new MatchEngine(
-        matches: widget.demoProfiles.map((final profile) {
+        matches: widget.profilesList!.map((final profile) {
       return Match(profile: profile);
     }).toList());
 
@@ -84,7 +84,7 @@ class _TinderSwapCardState extends State<TinderSwapCard> {
         child: new CardStack(
             matchEngine: matchEngine,
             onSwipeCallback: (match) {
-              widget.myCallback(match);
+              widget.myCallback!(match!);
             }),
       ),
       bottomNavigationBar: _buildBottomBar(matchEngine),
@@ -93,10 +93,10 @@ class _TinderSwapCardState extends State<TinderSwapCard> {
 }
 
 class RoundIconButton extends StatelessWidget {
-  final IconData icon;
-  final Color iconColor;
-  final double size;
-  final VoidCallback onPressed;
+  final IconData? icon;
+  final Color? iconColor;
+  final double? size;
+  final VoidCallback? onPressed;
 
   RoundIconButton.large({
     this.icon,
