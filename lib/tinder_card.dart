@@ -9,10 +9,12 @@ class TinderSwapCard extends StatefulWidget {
     this.title,
     this.profilesList,
     this.myCallback,
+    required this.controller,
   }) : super(key: key);
 
   final String? title;
   final List? profilesList;
+  MatchEngine controller;
 
   final Function(Decision)? myCallback;
 
@@ -79,15 +81,18 @@ class _TinderSwapCardState extends State<TinderSwapCard> {
     }).toList());
 
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(top: 20.0),
-        child: new CardStack(
-            matchEngine: matchEngine,
-            onSwipeCallback: (match) {
-              widget.myCallback!(match!);
-            }),
-      ),
-      bottomNavigationBar: _buildBottomBar(matchEngine),
+      body: Builder(builder: (context) {
+        widget.controller = matchEngine;
+        return Padding(
+          padding: const EdgeInsets.only(top: 20.0),
+          child: new CardStack(
+              matchEngine: widget.controller,
+              onSwipeCallback: (match) {
+                widget.myCallback!(match!);
+              }),
+        );
+      }),
+      // bottomNavigationBar: _buildBottomBar(matchEngine),
     );
   }
 }
